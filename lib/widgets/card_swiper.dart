@@ -8,13 +8,23 @@ class CardSwipper extends StatelessWidget {
     Key? key, 
     required this.movies
   }) : super(key: key);
-
+  
   final List<Movies> movies;
   
   @override
   Widget build(BuildContext context) {
 
     final size = MediaQuery.of(context).size;
+
+    if (movies.isEmpty) {
+      return Container(
+        width: double.infinity,
+        height: size.height * 0.5,
+        child: const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
 
     return Container(
       width: double.infinity,
@@ -33,7 +43,7 @@ class CardSwipper extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: FadeInImage(
-                placeholder: AssetImage('assets/no-image.jpg'), 
+                placeholder: const AssetImage('assets/no-image.jpg'), 
                 image: NetworkImage(movie.fullPosterImg),
                 fit: BoxFit.cover,
               ),

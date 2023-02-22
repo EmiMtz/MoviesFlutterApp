@@ -13,6 +13,7 @@ class HomeScreen extends StatelessWidget {
     final moviesProvider = Provider.of<MoviesProvider>(context);
 
     print(moviesProvider.onDisplayMovies);
+    print(moviesProvider.popularMovies);
     
     return Scaffold(
       appBar: AppBar(
@@ -32,7 +33,10 @@ class HomeScreen extends StatelessWidget {
             CardSwipper(movies: moviesProvider.onDisplayMovies),
 
           //Slider de peliculas
-            const MovieSlider(),
+            MovieSlider(
+              movies: moviesProvider.popularMovies, 
+              movieTitle: 'Populares!',
+            ),
           ],
         ),
       ),
