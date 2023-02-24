@@ -13,7 +13,7 @@ class MoviesProvider extends ChangeNotifier {
   final String _language = 'es-ES';
 
   final debouncer = Debouncer(
-    duration: Duration( milliseconds: 500 ),
+    duration: const Duration( milliseconds: 300 ),
   );
 
   List<Movies> onDisplayMovies = [];
@@ -23,7 +23,7 @@ class MoviesProvider extends ChangeNotifier {
 
   int _popularPage = 0;
   
-  final StreamController<List<Movies>> _suggestionStreamContoller = new StreamController.broadcast();
+  final StreamController<List<Movies>> _suggestionStreamContoller = StreamController.broadcast();
   Stream<List<Movies>> get suggestionStream => _suggestionStreamContoller.stream;
 
   MoviesProvider() {
@@ -93,10 +93,10 @@ class MoviesProvider extends ChangeNotifier {
       _suggestionStreamContoller.add( results );
     };
 
-    final timer = Timer.periodic(const Duration(milliseconds: 300), ( _ ) { 
+    final timer = Timer.periodic(const Duration(milliseconds: 100), ( _ ) { 
       debouncer.value = searchTerm;
     });
 
-    Future.delayed(const Duration( milliseconds: 301)).then(( _ ) => timer.cancel());
+    Future.delayed(const Duration( milliseconds: 101)).then(( _ ) => timer.cancel());
   }
 }
