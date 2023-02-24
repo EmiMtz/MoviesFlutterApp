@@ -3,8 +3,7 @@ import 'package:app_movies/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class DetailsScreen extends StatelessWidget {
-   
-  const DetailsScreen({Key? key}) : super(key: key);
+  const DetailsScreen({super.key});
   
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class DetailsScreen extends StatelessWidget {
               _Overview(movie),
               _Overview(movie),
               _Overview(movie),
-              const CastingCards()
+              CastingCards(movie.id)
             ]),
           )
         ],
