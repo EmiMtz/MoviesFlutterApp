@@ -1,4 +1,5 @@
 import 'package:app_movies/providers/movies_provider.dart';
+import 'package:app_movies/search/search_delegate.dart';
 import 'package:app_movies/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,9 +12,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final moviesProvider = Provider.of<MoviesProvider>(context);
-
-    print(moviesProvider.onDisplayMovies);
-    print(moviesProvider.popularMovies);
     
     return Scaffold(
       appBar: AppBar(
@@ -21,8 +19,8 @@ class HomeScreen extends StatelessWidget {
         elevation: 0,
         actions: [
           IconButton(
-            onPressed: (){}, 
-            icon: const Icon(Icons.search_outlined)
+            icon: const Icon(Icons.search_outlined),
+            onPressed: () => showSearch(context: context, delegate: MovieSearchDelegate())
           )
         ],
       ),
